@@ -3,13 +3,15 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import zod, { boolean, string } from 'zod';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 const PORT =  3001;
-
 app.use(express.json());
 app.use(cors());
+const mongoURL=process.env.DATABASE_URL || "";
 // MongoDB Connection
-mongoose.connect("mongodb://localhost:27017/Todo");
+mongoose.connect(mongoURL);
 
 // Define Schema and Model for ToDo
 interface Todo {

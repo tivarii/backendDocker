@@ -1,0 +1,36 @@
+
+
+
+# services:
+#   mongodb:
+#     image: mongo
+#     ports:
+#       - 27017:27017
+  
+#   backend:
+#     build: src
+#     depends_on:
+#       - mongodb
+#     ports:
+#       - 3001:3001
+#     environment:
+#       - DATABASE_URL=mongodb://mongodb:27017/Todo
+
+services:
+  backend:
+    build: .
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo6
+    environment:
+      - DATABASE_URL=mongodb://mongo6:27017/Todo
+
+  mongo6:
+    image: mongo
+    ports:
+      - "27017:27017"
+    
+
+
+    
